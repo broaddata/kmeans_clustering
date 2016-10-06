@@ -1,0 +1,9 @@
+{
+    "path" : "~/data-science/clustering",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

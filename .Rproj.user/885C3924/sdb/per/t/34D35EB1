@@ -1,0 +1,28 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1475753802887.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "34D35EB1",
+    "lastKnownWriteTime" : 1475667893,
+    "last_content_update" : 1475753802887,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "iv5291wbcm",
+        "caption" : "wine_df",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=wine_df&cache_key=iv5291wbcm",
+        "displayedObservations" : 178,
+        "environment" : "",
+        "object" : "wine_df",
+        "totalObservations" : 178,
+        "variables" : 13
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
