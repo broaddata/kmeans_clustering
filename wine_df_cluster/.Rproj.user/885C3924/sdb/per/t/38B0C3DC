@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "# This mini-project is based on the K-Means exercise from 'R in Action'\n# Go here for the original blog post and solutions\n# http://www.r-bloggers.com/k-means-clustering-from-r-in-action/\n\n# Exercise 0: Install these packages if you don't have them already\n\n# install.packages(c(\"cluster\", \"rattle\",\"NbClust\"))\ninstall.packages(c(\"cluster\", \"rattle\",\"NbClust\"))\n\n# Now load the data and look at the first few rows\ndata(wine, package=\"rattle\")\nhead(wine)\n\n# Exercise 1: Remove the first column from the data and scale\n# it using the scale() function\nwine_df <- scale(wine[-1])\n\n\n\n# Now we'd like to cluster the data using K-Means. \n# How do we decide how many clusters to use if you don't know that already?\n# We'll try two methods.\n\n# Method 1: A plot of the total within-groups sums of squares against the \n# number of clusters in a K-means solution can be helpful. A bend in the \n# graph can suggest the appropriate number of clusters. \n\nwssplot <- function(data, nc=15, seed=1234){\n\t              wss <- (nrow(data)-1)*sum(apply(data,2,var))\n               \t      for (i in 2:nc){\n\t\t        set.seed(seed)\n\t                wss[i] <- sum(kmeans(data, centers=i)$withinss)}\n\t                \n\t\t      plot(1:nc, wss, type=\"b\", xlab=\"Number of Clusters\",\n\t                        ylab=\"Within groups sum of squares\")\n\t   }\n\nwssplot(wine_df)\n\n# Exercise 2:\n#   * How many clusters does this method suggest? Answer: 3\n#   * Why does this method work?  Answer: 15 is evenly divisible by 3\n#   * What's the intuition behind it? \n#   * Answer: The largest distance of the sum of squares occurs over three clusters.\n#   * Look at the code for wssplot() and figure out how it works\n\n# Method 2: Use the NbClust library, which runs many experiments\n# and gives a distribution of potential number of clusters.\n\nlibrary(NbClust)\nset.seed(1234)\nnc <- NbClust(wine_df, min.nc=2, max.nc=15, method=\"kmeans\")\nbarplot(table(nc$Best.n[1,]),\n\t          xlab=\"Numer of Clusters\", ylab=\"Number of Criteria\",\n\t\t            main=\"Number of Clusters Chosen by 26 Criteria\")\n\n\n# Exercise 3: How many clusters does this method suggest? Answer: 3\n\n\n# Exercise 4: Once you've picked the number of clusters, run k-means \n# using this number of clusters. Output the result of calling kmeans()\n# into a variable fit.km\n\n\n# fit.km <- kmeans( ... )\nfit.km <- kmeans(wine_df, centers = 3)\n# Now we want to evaluate how well this clustering does.\n\n# Exercise 5: using the table() function, show how the clusters in fit.km$clusters\n# compares to the actual wine types in wine$Type. Would you consider this a good\n# clustering? Yes\nct.km <- table(wine$Type, fit.km$cluster)\nct.km\n# Exercise 6:\n# * Visualize these clusters using  function clusplot() from the cluster library\n# * Would you consider this a good clustering? Yes\n\n#clusplot\nlibrary(cluster)\nclusplot(pam(wine_df, 3))\n",
+    "created" : 1475556498080.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2657995519",
+    "id" : "38B0C3DC",
+    "lastKnownWriteTime" : 1475761633,
+    "last_content_update" : 1475761633696,
+    "path" : "~/data-science/clustering/clustering.R",
+    "project_path" : "clustering.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
